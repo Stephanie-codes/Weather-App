@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import axios from 'axios'
+import DateTimeComponent from './DateTime'
 
 function App() {
   const [data, setData] = useState({})
@@ -32,35 +33,35 @@ function App() {
 
         <div className="middle">
           <div className="location">
-            <h2>Canary Wharf</h2>
+            <h2>{data.name}</h2>
           </div>
           <div className="temperature">
-            <h1>28°C</h1>
+            {data.main ? <h1>{data.main.temp}°C</h1> : null}
           </div>
           <div className="description">
-            <h3>Sunny</h3>
+            {data.weather ? <h3>{data.weather[0].main}</h3> : null}
           </div>
           <div className="date">
-            <h4>Sat 12 Aug 22:01</h4>
+            <DateTimeComponent />
           </div>
         </div>
 
         <div className="bottom">
           <div className="feel">
             <p>Feels like:</p> 
-            <p> 26°C</p>
+            {data.main ? <p>{data.main.feels_like}°C</p> : null}
           </div>
           <div className="pressure">
             <p>Pressure:</p>
-            <p>1013</p>
+            {data.main ? <p>{data.main.pressure}</p> : null}
           </div>
           <div className="wind">
             <p>Wind Speed:</p>
-            <p>8mph</p>
+            {data.wind ? <p>{data.wind.speed}mph</p> : null}
           </div>
-          <div className="visibility">
-            <p>Visibility:</p> 
-            <p>10000</p>
+          <div className="humidity">
+            <p>Humidity:</p> 
+            {data.main ? <p>{data.main.humidity}</p> : null}
           </div>
         </div>
 
