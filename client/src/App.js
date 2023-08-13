@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import axios from 'axios'
 import DateTimeComponent from './DateTime'
 
@@ -10,13 +10,24 @@ function App() {
 
   const searchLocation = (event) => {
     if (event.key === 'Enter') {
-      axios.get(url).then((response) => {
-        setData(response.data)
-        console.log(response.data)
-      })
-      setLocation('')
+      fetchData();
     }
-  }
+  };
+
+ const fetchData = () => {
+    axios
+    .get(url)
+    .then((response) => {
+      setData(response.data);
+      console.log(response.data);
+    })
+
+    .catch((error) => {
+      console.error('Error fetching data:', error);
+    });
+
+    setLocation('');
+  };
 
   return (
     <div className="app">
@@ -29,7 +40,7 @@ function App() {
           onKeyDown={searchLocation}
           placeholder="Enter Location" 
           type='text'/>
-          <button className="search-button" onClick={searchLocation}>Search</button>
+          <button className="search-button" onClick={fetchData}>Search</button>
         </div> 
 
         <div className="middle">
