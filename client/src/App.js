@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState} from 'react'
 import axios from 'axios'
 import DateTimeComponent from './DateTime'
 
@@ -58,7 +58,7 @@ function App() {
           </div>
         </div>
 
-        {data.name != undefined && 
+        {data.name !== undefined && 
         <div className="bottom">
           <div className="feel">
             <p>Feels like:</p> 
