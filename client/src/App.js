@@ -26,9 +26,9 @@ function App() {
           <input 
           value={location}
           onChange={event => setLocation(event.target.value)}
-          onKeyDown={searchLocation}
           placeholder="Enter Location" 
           type='text'/>
+          <button className="search-button" onClick={searchLocation}>Search</button>
         </div> 
 
         <div className="middle">
